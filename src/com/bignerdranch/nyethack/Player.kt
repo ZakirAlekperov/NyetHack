@@ -1,5 +1,6 @@
 package com.bignerdranch.nyethack
 
+import com.bignerdranch.nyethack.extensions.random as randomizer
 import java.io.File
 import java.util.*
 
@@ -54,12 +55,9 @@ class Player(_name: String,
             else -> "is in awful condition!"
         }
 
-    private fun selectHometown(): String {
-        var text = File("data/towns.txt")
-            .readText()
-            .split("\n")
-        return text[8]
-    }
+    private fun selectHometown()=File("data/towns.txt")
+        .readText().split(" ").randomizer()
+
 
     override val diceCount: Int = 3
     override val diceSide: Int = 6

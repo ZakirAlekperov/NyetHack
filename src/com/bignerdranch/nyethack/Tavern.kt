@@ -1,6 +1,7 @@
 package com.bignerdranch.nyethack
 
 import java.io.File
+import com.bignerdranch.nyethack.extensions.random
 
 
 const val TAVERN_NAME = "Taernyl's Folly"
@@ -18,8 +19,8 @@ var patronGold = mutableMapOf<String, Double>()
 
 fun main() {
     (0..9).forEach {
-        val first = patronList.shuffled().first()
-        val last = lastName.shuffled().first()
+        val first = patronList.random()
+        val last = lastName.random()
         val name = "$first $last"
         uniquePatrons += name
     }
@@ -30,15 +31,12 @@ fun main() {
     var orderCount = 0
     while(orderCount<=9){
         placeOrder(
-            uniquePatrons.shuffled().first(),
-                    menuList.shuffled().first())
+            uniquePatrons.random(),
+                    menuList.random())
         orderCount ++
     }
 
     displayPatronBalance()
-//    com.bignerdranch.nyethack.bouncer()
-//    println(com.bignerdranch.nyethack.getPatronGold)
-//    com.bignerdranch.nyethack.displayMenu()
 }
 
 fun displayMenu(){
@@ -64,6 +62,7 @@ fun displayMenu(){
 
     }
 }
+
 
 private fun toDragonSpeak(phrase: String) =
     phrase.replace(Regex("[AEIUaeiou]")){
